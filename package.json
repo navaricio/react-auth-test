@@ -1,0 +1,37 @@
+{
+    "name": "react-auth0",
+    "version": "1.0.0",
+    "description": "Auth0 test for authenticating users with federations",
+    "main": "index.js",
+    "engines": {
+        "node": ">=10.15 <11"
+    },
+    "scripts": {
+        "install:all": "npm install && cd client/ && npm install && cd ..",
+        "client:build": "cd client && npm run build && cd ../",
+        "start:client": "node bin/start_client",
+        "start:server": "npm run client:build && node index.js",
+        "start:dev": "concurrently \"npm run start:server\" \"npm run start:client\"",
+        "start": "npm run start:server",
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "author": "Mauricio Mercado <mmercado@navarik.com>",
+    "license": "ISC",
+    "dependencies": {
+        "bunyan": "1.8.12",
+        "cross-env": "5.2.0",
+        "dotenv": "6.2.0",
+        "fastify": "1.14.1",
+        "fastify-static": "1.1.0",
+        "handlebars": "4.1.0",
+        "lodash": "4.17.11",
+        "point-of-view": "2.1.0",
+        "uuid": "3.3.2"
+    },
+    "devDependencies": {
+        "concurrently": "4.1.0",
+        "eslint": "5.12.0",
+        "prettier": "1.16.4",
+        "prettier-eslint": "8.8.2"
+    }
+}
