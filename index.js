@@ -12,6 +12,7 @@ const initialize = async () => {
          * Start API
          */
         await startServer(config, log);
+        // awesome
 
         /**
          * These errors should never be trigger
