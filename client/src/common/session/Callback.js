@@ -7,13 +7,12 @@ import querystring from "querystring";
 import ReactJson from "react-json-view";
 import ReactRouterPropTypes from "react-router-prop-types/";
 import PropTypes from "prop-types";
+import jwtDecode from "jwt-decode";
 import { sessionOperations } from "../../modules/session";
 
 const FIRST_INDEX = 1;
 
 class Callback extends Component {
-    state = { data: {} };
-
     componentDidMount() {
         const { location } = this.props;
         let data = {};
@@ -40,10 +39,15 @@ class Callback extends Component {
     render() {
         return (
             <Container>
+                {this.renderError()}
                 <Row>
+                    <h1>API ID Token Response</h1>
                     <ReactJson src={this.props.data} />
                 </Row>
-                {this.renderError()}
+                <Row>
+                    <h1>Decoded Token</h1>
+                    <ReactJson src={this.props.decoded_token} />
+                </Row>
             </Container>
         );
     }
@@ -56,7 +60,8 @@ Callback.propTypes = {
 
 const mapStateToProps = state => {
     const { error, data } = state.session.auth;
-    return { error, data };
+    const decoded_token = jwtDecode(data.id_token);
+    return { error, data, decoded_token };
 };
 
 const mapDispatchToProps = {
